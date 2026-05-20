@@ -8,36 +8,42 @@ const products = [
     tagline: '自動課金される習慣化アプリ',
     url: 'https://apps.apple.com/jp/app/id6771253780',
     icon: '/icons/saborenu.png',
+    tags: ['iOS', '習慣化', '課金'],
   },
   {
     name: 'うまポケ',
     tagline: '仮想馬券で友だちと回収率を競う',
     url: 'https://apps.apple.com/jp/app/id6762559715',
     icon: '/icons/umapoke.png',
+    tags: ['iOS', 'SNS', '競馬'],
   },
   {
     name: 'ガチャなう',
     tagline: '新作ガチャガチャを毎日更新',
     url: 'https://www.gacha-now.net/',
     icon: '/icons/gacha-now.png',
+    tags: ['Web', 'データベース'],
   },
   {
     name: 'スマプラン',
     tagline: 'スマホ料金プラン、ネット回線をAIで賢く判断',
     url: 'https://www.smaplan.com/',
     icon: '/icons/smaplan.png',
+    tags: ['Web', 'AI', '比較'],
   },
   {
     name: 'オレのコスメ',
     tagline: 'メンズコスメの総合ガイド',
     url: 'https://www.oreno-cosme.com/',
     icon: '/icons/oreno-cosme.png',
+    tags: ['Web', 'AI', 'コスメ'],
   },
   {
     name: 'YourPage',
     tagline: 'HPをすべてお任せ',
     url: 'https://www.your-pages.com/',
     icon: '/icons/your-pages.png',
+    tags: ['Web', '受託'],
   },
 ];
 ---
@@ -161,7 +167,7 @@ const products = [
           <!-- right: products -->
           <div id="products">
             <p class="text-[13px] font-medium text-sub mb-4">プロダクト</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-6">
               {products.map((p) => <ProductCard {...p} />)}
             </div>
           </div>
