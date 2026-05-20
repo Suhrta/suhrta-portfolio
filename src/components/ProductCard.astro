@@ -12,43 +12,42 @@ const { name, tagline, url, icon, tags = [] } = Astro.props;
   href={url}
   target="_blank"
   rel="noopener noreferrer"
-  class="tesla group relative flex items-center gap-3 p-4 pb-5 pr-8 rounded-[12px] bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_2px_10px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white/90 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-1"
+  class="tesla group relative flex items-center gap-4 p-5 pb-6 pr-10 rounded-[14px] bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_2px_10px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white/90 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-1"
 >
-  <div class="shrink-0 w-12 h-12 rounded-[12px] bg-soft overflow-hidden flex items-center justify-center">
+  <div class="shrink-0 w-16 h-16 rounded-[14px] bg-soft overflow-hidden flex items-center justify-center">
     {icon ? (
       <img src={icon} alt={name} class="w-full h-full object-cover" loading="lazy" />
     ) : (
-      <span class="text-[22px] font-medium text-ink" style="letter-spacing: normal;">
+      <span class="text-[28px] font-medium text-ink" style="letter-spacing: normal;">
         {name.charAt(0)}
       </span>
     )}
   </div>
   <div class="min-w-0 flex-1">
     <h3
-      class="text-[16px] font-bold text-ink leading-[1.2]"
+      class="text-[18px] font-bold text-ink leading-[1.2]"
       style="letter-spacing: normal;"
     >
       {name}
     </h3>
-    <p class="mt-1.5 text-[11px] font-normal text-sub leading-[1.45]">
+    <p class="mt-2 text-[13px] font-normal text-sub leading-[1.5]">
       {tagline}
     </p>
   </div>
 
-  <!-- top-right link indicator -->
   <span
-    class="tesla absolute top-3 right-3 inline-flex items-center justify-center w-6 h-6 rounded-full bg-soft text-muted group-hover:bg-ink group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+    class="tesla absolute top-4 right-4 inline-flex items-center justify-center w-7 h-7 rounded-full bg-soft text-muted group-hover:bg-ink group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
     aria-hidden="true"
   >
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
       <path d="M7 17L17 7M9 7h8v8"/>
     </svg>
   </span>
 
   {tags.length > 0 && (
-    <div class="absolute -bottom-2 right-3 flex flex-wrap gap-1.5 max-w-[70%] justify-end">
+    <div class="absolute -bottom-2 right-4 flex flex-wrap gap-1.5 max-w-[70%] justify-end">
       {tags.map((t) => (
-        <span class="tesla inline-block rounded-full bg-white/70 backdrop-blur border border-line px-2.5 py-1 text-[10px] font-medium text-sub tracking-wide shadow-[0_1px_3px_rgba(0,0,0,0.04)] group-hover:bg-white">
+        <span class="tesla inline-block rounded-full bg-white/70 backdrop-blur border border-line px-3 py-1 text-[11px] font-medium text-sub tracking-wide shadow-[0_1px_3px_rgba(0,0,0,0.04)] group-hover:bg-white">
           #{t}
         </span>
       ))}
