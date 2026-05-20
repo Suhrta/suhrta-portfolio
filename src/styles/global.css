@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Maru+Gothic:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+html {
+  font-feature-settings: 'palt';
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+body {
+  color: #171A20;
+  font-feature-settings: 'palt';
+}
+
+::selection {
+  background: #3E6AE1;
+  color: #ffffff;
+}
+
+.tesla {
+  transition: all 0.33s cubic-bezier(0.5, 0, 0, 0.75);
+}

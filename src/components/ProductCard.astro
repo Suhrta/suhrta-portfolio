@@ -1,0 +1,36 @@
+---
+type Props = {
+  name: string;
+  tagline: string;
+  url: string;
+  icon?: string;
+};
+const { name, tagline, url, icon } = Astro.props;
+---
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="tesla group flex items-center gap-3 p-4 rounded-[12px] bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_2px_10px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white/85 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.7)] hover:-translate-y-0.5"
+>
+  <div class="shrink-0 w-12 h-12 rounded-[12px] bg-soft overflow-hidden flex items-center justify-center">
+    {icon ? (
+      <img src={icon} alt={name} class="w-full h-full object-cover" loading="lazy" />
+    ) : (
+      <span class="text-[22px] font-medium text-ink" style="letter-spacing: normal;">
+        {name.charAt(0)}
+      </span>
+    )}
+  </div>
+  <div class="min-w-0 flex-1">
+    <h3
+      class="text-[16px] font-bold text-ink leading-[1.2]"
+      style="letter-spacing: normal;"
+    >
+      {name}
+    </h3>
+    <p class="mt-1.5 text-[11px] font-normal text-sub leading-[1.45]">
+      {tagline}
+    </p>
+  </div>
+</a>

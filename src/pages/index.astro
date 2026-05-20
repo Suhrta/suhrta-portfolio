@@ -1,0 +1,252 @@
+---
+import '../styles/global.css';
+import ProductCard from '../components/ProductCard.astro';
+
+const products = [
+  {
+    name: 'サボれーぬ',
+    tagline: '自動課金される習慣化アプリ',
+    url: 'https://apps.apple.com/jp/app/id6771253780',
+    icon: '/icons/saborenu.png',
+  },
+  {
+    name: 'うまポケ',
+    tagline: '仮想馬券で友だちと回収率を競う',
+    url: 'https://apps.apple.com/jp/app/id6762559715',
+    icon: '/icons/umapoke.png',
+  },
+  {
+    name: 'ガチャなう',
+    tagline: '新作ガチャガチャを毎日更新',
+    url: 'https://www.gacha-now.net/',
+    icon: '/icons/gacha-now.png',
+  },
+  {
+    name: 'スマプラン',
+    tagline: 'スマホ料金プラン、ネット回線をAIで賢く判断',
+    url: 'https://www.smaplan.com/',
+    icon: '/icons/smaplan.png',
+  },
+  {
+    name: 'オレのコスメ',
+    tagline: 'メンズコスメの総合ガイド',
+    url: 'https://www.oreno-cosme.com/',
+    icon: '/icons/oreno-cosme.png',
+  },
+  {
+    name: 'YourPage',
+    tagline: 'HPをすべてお任せ',
+    url: 'https://www.your-pages.com/',
+    icon: '/icons/your-pages.png',
+  },
+];
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>さーた / Suhrta</title>
+    <meta
+      name="description"
+      content="個人開発でモバイル/Webアプリを作っています。サボれーぬ、うまポケ、YourPage、がちゃなう、スマプラン。"
+    />
+    <meta property="og:title" content="さーた / Suhrta" />
+    <meta
+      property="og:description"
+      content="個人開発でモバイル/Webアプリを作っています。"
+    />
+  </head>
+  <body class="font-sans bg-canvas">
+    <canvas
+      id="bgCanvas"
+      class="fixed inset-0 -z-0 w-full h-full pointer-events-none"
+    ></canvas>
+    <main class="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-8">
+      <div class="relative w-full max-w-6xl rounded-[16px] overflow-hidden bg-white/55 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]">
+        <!-- top nav -->
+        <nav class="flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8">
+          <span class="text-[14px] font-medium text-ink tracking-[0.05em]">
+            Suhrta
+          </span>
+          <div class="flex items-center gap-1 md:gap-2">
+            <a
+              href="#"
+              class="tesla rounded-[4px] px-3 py-1 text-[13px] font-medium text-ink hover:bg-soft"
+            >
+              ホーム
+            </a>
+            <a
+              href="#products"
+              class="tesla rounded-[4px] px-3 py-1 text-[13px] font-medium text-ink hover:bg-soft"
+            >
+              プロダクト
+            </a>
+            <a
+              href="https://x.com/Suhrta_"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tesla rounded-[4px] px-3 py-1 text-[13px] font-medium text-ink hover:bg-soft"
+            >
+              X
+            </a>
+          </div>
+        </nav>
+
+        <!-- body: 2 columns -->
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 md:gap-10 px-6 md:px-10 py-8 md:py-12">
+          <!-- left: profile -->
+          <div class="flex flex-col justify-between">
+            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-soft overflow-hidden">
+              <img
+                src="/avatar.png"
+                alt="さーた"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="mt-6 flex items-center gap-3 flex-wrap">
+              <h1
+                class="text-[28px] md:text-[32px] font-medium text-ink leading-[1.15]"
+                style="letter-spacing: normal;"
+              >
+                さーた / Suhrta
+              </h1>
+              <a
+                href="https://x.com/Suhrta_"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter) @Suhrta_"
+                class="tesla inline-flex items-center justify-center w-8 h-8 rounded-full bg-ink text-white hover:bg-[#000]"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+            </div>
+            <p class="mt-2 text-[13px] font-medium text-sub">
+              個人開発者
+            </p>
+            <p class="mt-4 text-[13px] font-normal text-body leading-[1.6]">
+              「あったらいい」を、自分のためにつくっています。<br />
+              設計から運用まで、ぜんぶひとりで。
+            </p>
+            <div class="mt-6">
+              <p class="text-[11px] font-medium text-sub mb-2 tracking-[0.1em]">STACK</p>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="inline-flex items-center gap-1 rounded-md bg-[#3178C6]/12 px-2 py-1 text-[11px] font-medium text-[#3178C6]">
+                  TypeScript
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-md bg-[#61DAFB]/15 px-2 py-1 text-[11px] font-medium text-[#0091B0]">
+                  React
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-md bg-[#61DAFB]/15 px-2 py-1 text-[11px] font-medium text-[#0091B0]">
+                  React Native
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-md bg-ink/8 px-2 py-1 text-[11px] font-medium text-ink">
+                  Next.js
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-md bg-[#FF5D01]/12 px-2 py-1 text-[11px] font-medium text-[#FF5D01]">
+                  Astro
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-md bg-[#646CFF]/12 px-2 py-1 text-[11px] font-medium text-[#646CFF]">
+                  Vite
+                </span>
+                <span class="inline-flex items-center gap-1 rounded-md bg-ink/8 px-2 py-1 text-[11px] font-medium text-ink">
+                  Expo
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- right: products -->
+          <div id="products">
+            <p class="text-[13px] font-medium text-sub mb-4">プロダクト</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {products.map((p) => <ProductCard {...p} />)}
+            </div>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <footer class="border-t border-line py-4 px-6 md:px-10">
+          <div class="flex items-center justify-between">
+            <p class="text-[11px] font-normal text-sub">© 2026 さーた</p>
+            <p class="text-[11px] font-normal text-sub">Built with Astro</p>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <script>
+      type CharColumn = {
+        x: number;
+        y: number;
+        speed: number;
+        char: string;
+      };
+
+      const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
+      const ctx = canvas.getContext('2d');
+      if (canvas && ctx) {
+        const CHARS =
+          '{}[]()<>/*+=-!|&^%$#@?:;,.const let var function async await return import export class new this null true false 0123456789';
+        let width = 0;
+        let height = 0;
+        let cols: CharColumn[] = [];
+        const fontSize = 14;
+        const colSpacing = 22;
+
+        function resize() {
+          if (!canvas || !ctx) return;
+          const dpr = window.devicePixelRatio || 1;
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          canvas.style.width = width + 'px';
+          canvas.style.height = height + 'px';
+          ctx.scale(dpr, dpr);
+          ctx.font = `${fontSize}px "JetBrains Mono", Menlo, monospace`;
+          ctx.textBaseline = 'top';
+
+          const colCount = Math.ceil(width / colSpacing);
+          cols = [];
+          for (let i = 0; i < colCount; i++) {
+            cols.push({
+              x: i * colSpacing,
+              y: Math.random() * height,
+              speed: 0.3 + Math.random() * 0.5,
+              char: CHARS[Math.floor(Math.random() * CHARS.length)] ?? '0',
+            });
+          }
+        }
+
+        function tick() {
+          if (!canvas || !ctx) return;
+          // soft fade trail
+          ctx.fillStyle = 'rgba(232, 234, 237, 0.25)';
+          ctx.fillRect(0, 0, width, height);
+
+          for (const c of cols) {
+            ctx.fillStyle = 'rgba(23, 26, 32, 0.28)';
+            ctx.fillText(c.char, c.x, c.y);
+
+            c.y += c.speed;
+            if (c.y > height + 20) {
+              c.y = -20;
+              c.speed = 0.3 + Math.random() * 0.5;
+            }
+            if (Math.random() < 0.02) {
+              c.char = CHARS[Math.floor(Math.random() * CHARS.length)] ?? '0';
+            }
+          }
+          requestAnimationFrame(tick);
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+        requestAnimationFrame(tick);
+      }
+    </script>
+  </body>
+</html>
