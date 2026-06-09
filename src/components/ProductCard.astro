@@ -5,14 +5,25 @@ type Props = {
   url: string;
   icon?: string;
   tags?: string[];
+  comingSoon?: boolean;
+  badge?: string;
 };
-const { name, tagline, url, icon, tags = [] } = Astro.props;
+const { name, tagline, url, icon, tags = [], comingSoon = false, badge } = Astro.props;
+const badgeLabel = badge ?? (comingSoon ? 'リリース準備中' : null);
+const hasLink = url && url !== '#';
+const Tag = hasLink ? 'a' : 'div';
+const linkAttrs = hasLink
+  ? { href: url, target: '_blank', rel: 'noopener noreferrer' }
+  : {};
 ---
-<a
-  href={url}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="tesla group relative flex items-center gap-4 p-5 pb-6 pr-10 rounded-[14px] bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_2px_10px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.7)] hover:bg-white/90 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-1"
+<Tag
+  {...linkAttrs}
+  class:list={[
+    'tesla group relative flex items-center gap-4 p-5 pb-6 pr-10 rounded-[14px] bg-white/70 backdrop-blur-md border border-white/40 shadow-[0_2px_10px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.7)]',
+    hasLink
+      ? 'hover:bg-white/90 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-1'
+      : 'cursor-default',
+  ]}
 >
   <div class="shrink-0 w-16 h-16 rounded-[14px] bg-soft overflow-hidden flex items-center justify-center">
     {icon ? (
@@ -24,25 +35,35 @@ const { name, tagline, url, icon, tags = [] } = Astro.props;
     )}
   </div>
   <div class="min-w-0 flex-1">
-    <h3
-      class="text-[18px] font-bold text-ink leading-[1.2]"
-      style="letter-spacing: normal;"
-    >
-      {name}
-    </h3>
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3
+        class="text-[18px] font-bold text-ink leading-[1.2]"
+        style="letter-spacing: normal;"
+      >
+        {name}
+      </h3>
+      {badgeLabel && (
+        <span class="inline-flex items-center gap-1 rounded-full bg-ink/8 px-2 py-0.5 text-[10px] font-medium text-sub tracking-wide whitespace-nowrap">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+          {badgeLabel}
+        </span>
+      )}
+    </div>
     <p class="mt-2 text-[13px] font-normal text-sub leading-[1.5]">
       {tagline}
     </p>
   </div>
 
-  <span
-    class="tesla absolute top-4 right-4 inline-flex items-center justify-center w-7 h-7 rounded-full bg-soft text-muted group-hover:bg-ink group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-    aria-hidden="true"
-  >
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
-      <path d="M7 17L17 7M9 7h8v8"/>
-    </svg>
-  </span>
+  {hasLink && (
+    <span
+      class="tesla absolute top-4 right-4 inline-flex items-center justify-center w-7 h-7 rounded-full bg-soft text-muted group-hover:bg-ink group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+        <path d="M7 17L17 7M9 7h8v8"/>
+      </svg>
+    </span>
+  )}
 
   {tags.length > 0 && (
     <div class="absolute -bottom-2 right-4 flex flex-wrap gap-1.5 max-w-[70%] justify-end">
